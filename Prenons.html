@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PRENONS — Brand Identity System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Syne:wght@400;700;800&family=Barlow+Condensed:ital,wght@0,300;0,700;0,900;1,300&family=Familjen+Grotesk:ital,wght@0,400;0,700;1,400&family=Unbounded:wght@300;700;900&family=Fraunces:ital,opsz,wght@1,9..144,300;1,9..144,600&family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,500;12..96,800&family=Krona+One&family=League+Spartan:wght@300;700;900&display=swap" rel="stylesheet">
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{background:#0a0a0a;color:#fff;font-family:'DM Sans',sans-serif;overflow-x:hidden}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-thumb{background:#333}
+
+/* NAV */
+.sidenav{
+  position:fixed;top:0;left:0;height:100vh;width:64px;
+  background:#0a0a0a;border-right:1px solid rgba(255,255,255,0.06);
+  display:flex;flex-direction:column;align-items:center;
+  padding:24px 0;gap:0;z-index:100;
+}
+.sidenav-logo{
+  font-family:'Bebas Neue',sans-serif;font-size:13px;
+  letter-spacing:0.15em;color:rgba(255,255,255,0.9);
+  writing-mode:vertical-rl;transform:rotate(180deg);
+  margin-bottom:auto;padding-bottom:20px;
+}
+.sidenav-links{display:flex;flex-direction:column;gap:4px;align-items:center;}
+.sidenav-link{
+  width:40px;height:40px;border-radius:8px;display:flex;align-items:center;
+  justify-content:center;font-size:11px;font-weight:700;color:rgba(255,255,255,0.3);
+  cursor:pointer;transition:all 0.2s;text-decoration:none;letter-spacing:0.05em;
+  border:1px solid transparent;
+}
+.sidenav-link:hover,.sidenav-link.active{color:#fff;background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.1);}
+.sidenav-link.active{color:var(--brand-active,#fff);}
+
+/* MAIN */
+.main{margin-left:64px;}
+
+/* HERO */
+.hero{
+  height:100vh;display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 80px 80px;position:relative;overflow:hidden;
+  background:#0a0a0a;
+}
+.hero-bg-text{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  font-family:'Bebas Neue',sans-serif;font-size:clamp(120px,20vw,280px);
+  color:rgba(255,255,255,0.03);letter-spacing:-0.02em;white-space:nowrap;
+  pointer-events:none;user-select:none;line-height:1;
+}
+.hero-rule{width:40px;height:2px;background:#fff;margin-bottom:32px;}
+.hero-overline{font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:16px;}
+.hero-title{
+  font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,10vw,120px);
+  letter-spacing:-0.01em;line-height:0.95;color:#fff;margin-bottom:24px;
+}
+.hero-title em{font-style:normal;color:rgba(255,255,255,0.25);}
+.hero-sub{font-size:15px;font-weight:300;color:rgba(255,255,255,0.45);max-width:420px;line-height:1.7;margin-bottom:48px;}
+.hero-links{display:flex;gap:4px;}
+.hero-link{
+  font-size:12px;letter-spacing:0.16em;text-transform:uppercase;
+  color:rgba(255,255,255,0.5);padding:10px 20px;border:1px solid rgba(255,255,255,0.1);
+  border-radius:2px;cursor:pointer;transition:all 0.2s;text-decoration:none;
+}
+.hero-link:hover{color:#fff;border-color:rgba(255,255,255,0.3);}
+.hero-link.primary{background:#fff;color:#0a0a0a;border-color:#fff;}
+.hero-link.primary:hover{background:rgba(255,255,255,0.9);}
+
+/* SECTION */
+.brand-section{
+  min-height:100vh;padding:0;position:relative;
+  border-top:1px solid rgba(255,255,255,0.06);
+}
+.section-inner{padding:80px 80px;}
+.section-label{
+  font-size:10px;letter-spacing:0.28em;text-transform:uppercase;
+  color:rgba(255,255,255,0.25);margin-bottom:8px;
+}
+.section-num{
+  font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:0.2em;
+  color:rgba(255,255,255,0.15);margin-bottom:48px;display:block;
+}
+
+/* ─── OPTION LAYOUT ─── */
+.opt-header{
+  display:grid;grid-template-columns:1fr 320px;gap:48px;
+  align-items:start;margin-bottom:72px;
+}
+.opt-name{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(80px,12vw,160px);
+  letter-spacing:-0.02em;line-height:0.9;
+  margin-bottom:16px;
+}
+.opt-tagline{font-size:13px;font-weight:300;line-height:1.8;max-width:480px;}
+.opt-meta{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:24px;}
+.opt-palette{display:flex;flex-direction:column;gap:3px;}
+.pal-row{display:flex;gap:3px;height:48px;}
+.pal-swatch{
+  flex:1;border-radius:4px;display:flex;align-items:flex-end;
+  padding:5px 8px;transition:flex 0.3s;cursor:default;
+  font-size:10px;font-family:monospace;letter-spacing:0.04em;
+}
+.pal-swatch.main{flex:3;}
+.opt-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;}
+.info-chip{
+  background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);
+  border-radius:4px;padding:12px;
+}
+.info-chip-label{font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:4px;}
+.info-chip-val{font-size:13px;font-weight:500;}
+
+/* ─── LOGO DISPLAY ─── */
+.logo-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px;}
+.logo-card{
+  border-radius:8px;padding:48px 36px;
+  display:flex;flex-direction:column;justify-content:space-between;
+  min-height:240px;position:relative;overflow:hidden;
+}
+.logo-card-label{
+  font-size:9px;letter-spacing:0.2em;text-transform:uppercase;
+  opacity:0.4;position:absolute;top:16px;right:16px;
+}
+
+/* ─── MOCKUP GRID ─── */
+.mockup-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:16px;}
+.mockup-label{
+  font-size:9px;letter-spacing:0.18em;text-transform:uppercase;
+  color:rgba(255,255,255,0.25);margin-bottom:12px;
+}
+
+/* BUSINESS CARD */
+.bizcard{
+  width:100%;aspect-ratio:1.75/1;border-radius:8px;
+  position:relative;overflow:hidden;display:flex;
+  flex-direction:column;justify-content:space-between;
+  padding:28px;
+}
+.bizcard-name{font-size:13px;font-weight:500;letter-spacing:0.02em;}
+.bizcard-title{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;opacity:0.5;margin-top:3px;}
+.bizcard-contact{font-size:10px;opacity:0.45;line-height:1.6;}
+.bizcard-logo-area{display:flex;align-items:center;gap:10px;}
+
+/* SOCIAL POST */
+.social-post{
+  width:100%;aspect-ratio:1/1;border-radius:8px;
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;
+  justify-content:space-between;padding:28px;
+}
+.social-post-tag{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;}
+.social-post-headline{font-size:clamp(22px,3vw,32px);line-height:1.15;}
+.social-post-footer{display:flex;justify-content:space-between;align-items:flex-end;}
+.social-handle{font-size:11px;letter-spacing:0.1em;opacity:0.5;}
+
+/* LETTERHEAD MOCKUP */
+.letterhead{
+  width:100%;aspect-ratio:0.77/1;background:#fff;border-radius:8px;
+  padding:32px 28px;display:flex;flex-direction:column;gap:16px;
+  overflow:hidden;
+}
+.lh-header{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:16px;}
+.lh-rule{height:2px;width:100%;}
+.lh-lines{display:flex;flex-direction:column;gap:6px;margin-top:8px;}
+.lh-line{height:6px;border-radius:2px;background:#e8e8e8;}
+.lh-line.short{width:60%;}
+.lh-line.xshort{width:35%;}
+.lh-body-lines{display:flex;flex-direction:column;gap:5px;flex:1;}
+
+/* TYPE SPECIMEN */
+.type-block{
+  background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);
+  border-radius:8px;padding:28px;
+}
+.type-specimen-label{font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:12px;}
+.type-sizes{display:flex;flex-direction:column;gap:8px;}
+
+/* DIVIDER */
+.h-rule{height:1px;background:rgba(255,255,255,0.06);margin:60px 0;}
+
+/* ── MICRO DETAILS ── */
+.micro-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px;}
+.micro-card{
+  background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);
+  border-radius:6px;padding:18px;display:flex;flex-direction:column;gap:8px;
+}
+.micro-label{font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.3);}
+.micro-val{font-size:12px;font-weight:500;}
+
+/* ANIM */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.brand-section .section-inner > *{animation:fadeInUp 0.6s ease both;}
+.brand-section .section-inner > *:nth-child(2){animation-delay:.06s}
+.brand-section .section-inner > *:nth-child(3){animation-delay:.12s}
+.brand-section .section-inner > *:nth-child(4){animation-delay:.18s}
+.brand-section .section-inner > *:nth-child(5){animation-delay:.22s}
+
+@media(max-width:900px){
+  .sidenav{width:0;display:none}
+  .main{margin-left:0}
+  .hero,.section-inner{padding:48px 24px}
+  .opt-header{grid-template-columns:1fr}
+  .logo-row,.mockup-row{grid-template-columns:1fr}
+  .micro-grid{grid-template-columns:1fr 1fr}
+  .opt-info-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- SIDENAV -->
+<nav class="sidenav">
+  <div class="sidenav-logo">PRENONS</div>
+  <div class="sidenav-links">
+    <a class="sidenav-link active" href="#opt1" title="Option I">I</a>
+    <a class="sidenav-link" href="#opt2" title="Option II">II</a>
+    <a class="sidenav-link" href="#opt3" title="Option III">III</a>
+    <a class="sidenav-link" href="#opt4" title="Option IV">IV</a>
+    <a class="sidenav-link" href="#opt5" title="Option V">V</a>
+  </div>
+</nav>
+
+<div class="main">
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-bg-text">PRENONS</div>
+  <div class="hero-rule"></div>
+  <div class="hero-overline">Brand Identity System · 2025</div>
+  <h1 class="hero-title">PRENONS<br><em>Five Identities.</em><br>One Direction.</h1>
+  <p class="hero-sub">Raw. Minimal. Bold. Five complete brand systems — each with logo, palette, typography, business card, social post, and letterhead mockups.</p>
+  <div class="hero-links">
+    <a class="hero-link primary" href="#opt1">Explore Brands ↓</a>
+    <a class="hero-link" href="#opt5">Skip to V</a>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     OPTION I — VOID
+══════════════════════════════════════════ -->
+<section class="brand-section" id="opt1">
+<div class="section-inner" style="background:#F2F0EB;">
+
+  <div class="section-label" style="color:rgba(0,0,0,0.35);">Brand Option</div>
+  <span class="section-num" style="color:rgba(0,0,0,0.15);">01 / 05</span>
+
+  <div class="opt-header">
+    <div>
+      <div class="opt-meta" style="color:rgba(0,0,0,0.35);">The Paper & Ink System</div>
+      <div class="opt-name" style="font-family:'Bebas Neue',sans-serif;color:#0D0D0D;line-height:0.88;">VOID</div>
+      <p class="opt-tagline" style="color:rgba(0,0,0,0.5);">Warm paper meets absolute ink. The editorial approach — used by Hermès, the FT, and McKinsey. Authority without saying a word about technology. This is how premium consultancies position: through restraint so severe it becomes power.</p>
+    </div>
+    <div>
+      <div class="info-chip-label" style="color:rgba(0,0,0,0.35);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:8px;">Color System</div>
+      <div class="opt-palette">
+        <div class="pal-row">
+          <div class="pal-swatch main" style="background:#0D0D0D;"><span style="color:rgba(255,255,255,0.4);">#0D0D0D</span></div>
+          <div class="pal-swatch" style="background:#E8372A;"><span style="color:rgba(255,255,255,0.7);">#E8372A</span></div>
+        </div>
+        <div class="pal-row">
+          <div class="pal-swatch main" style="background:#F2F0EB;border:1px solid rgba(0,0,0,0.08);"><span style="color:rgba(0,0,0,0.35);">#F2F0EB</span></div>
+          <div class="pal-swatch" style="background:#B8B4AA;"><span style="color:rgba(0,0,0,0.4);font-size:9px;">#B8B4AA</span></div>
+        </div>
+      </div>
+      <div class="opt-info-grid" style="margin-top:12px;">
+        <div class="info-chip" style="background:rgba(0,0,0,0.04);border-color:rgba(0,0,0,0.08);">
+          <div class="info-chip-label" style="color:rgba(0,0,0,0.3);">Display</div>
+          <div class="info-chip-val" style="color:#0D0D0D;font-family:'Bebas Neue',sans-serif;letter-spacing:0.04em;">Bebas Neue</div>
+        </div>
+        <div class="info-chip" style="background:rgba(0,0,0,0.04);border-color:rgba(0,0,0,0.08);">
+          <div class="info-chip-label" style="color:rgba(0,0,0,0.3);">Body</div>
+          <div class="info-chip-val" style="color:#0D0D0D;font-size:12px;">DM Sans Light</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOGOS -->
+  <div class="mockup-label" style="color:rgba(0,0,0,0.3);">Logo Lockups</div>
+  <div class="logo-row">
+    <!-- Primary -->
+    <div class="logo-card" style="background:#0D0D0D;">
+      <div class="logo-card-label" style="color:rgba(255,255,255,0.3);">Primary</div>
+      <div>
+        <!-- P mark: bold P with a cut through the bowl -->
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+          <rect width="40" height="40" rx="0" fill="none"/>
+          <path d="M8 6h14c5.5 0 9 3 9 8s-3.5 8-9 8H8V6z" stroke="#E8372A" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
+          <line x1="8" y1="22" x2="8" y2="36" stroke="#fff" stroke-width="2.5" stroke-linecap="square"/>
+          <line x1="16" y1="22" x2="16" y2="36" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-linecap="square" stroke-dasharray="2 2"/>
+        </svg>
+      </div>
+      <div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:0.06em;color:#fff;line-height:1;">PRENONS</div>
+        <div style="font-size:9px;letter-spacing:0.32em;text-transform:uppercase;color:#E8372A;margin-top:4px;">Technology Studio</div>
+      </div>
+    </div>
+    <!-- Reverse -->
+    <div class="logo-card" style="background:#F2F0EB;">
+      <div class="logo-card-label" style="color:rgba(0,0,0,0.25);">Light Mode</div>
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+        <path d="M8 6h14c5.5 0 9 3 9 8s-3.5 8-9 8H8V6z" stroke="#E8372A" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
+        <line x1="8" y1="22" x2="8" y2="36" stroke="#0D0D0D" stroke-width="2.5" stroke-linecap="square"/>
+      </svg>
+      <div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:0.06em;color:#0D0D0D;line-height:1;">PRENONS</div>
+        <div style="font-size:9px;letter-spacing:0.32em;text-transform:uppercase;color:rgba(0,0,0,0.35);margin-top:4px;">Technology Studio</div>
+      </div>
+    </div>
+    <!-- Icon only -->
+    <div class="logo-card" style="background:#E8372A;align-items:center;justify-content:center;gap:0;">
+      <div class="logo-card-label" style="color:rgba(255,255,255,0.5);">Icon Mark</div>
+      <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+        <path d="M12 10h22c8 0 14 4.5 14 12S42 34 34 34H12V10z" stroke="white" stroke-width="3.5" fill="none" stroke-linejoin="round"/>
+        <line x1="12" y1="34" x2="12" y2="56" stroke="white" stroke-width="3.5" stroke-linecap="square"/>
+        <line x1="26" y1="34" x2="26" y2="56" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-dasharray="3 3"/>
+        <circle cx="50" cy="48" r="8" fill="rgba(0,0,0,0.25)"/>
+        <line x1="47" y1="48" x2="53" y2="48" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="50" y1="45" x2="50" y2="51" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <div style="font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-top:16px;">Mark Only</div>
+    </div>
+  </div>
+
+  <!-- MOCKUPS -->
+  <div class="h-rule" style="background:rgba(0,0,0,0.08);"></div>
+  <div class="mockup-label" style="color:rgba(0,0,0,0.3);">Mockups — Business Card · Social Post · Letterhead</div>
+  <div class="mockup-row">
+
+    <!-- Business Card -->
+    <div>
+      <div class="mockup-label" style="color:rgba(0,0,0,0.3);">Business Card</div>
+      <div class="bizcard" style="background:#0D0D0D;">
+        <div style="position:absolute;top:0;right:0;width:3px;height:100%;background:#E8372A;"></div>
+        <div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:0.08em;color:#fff;">PRENONS</div>
+          <div style="font-size:8px;letter-spacing:0.28em;text-transform:uppercase;color:#E8372A;margin-top:2px;">Technology Studio</div>
+        </div>
+        <div>
+          <div style="font-size:12px;color:#fff;font-weight:500;margin-bottom:4px;">Prajwol Shrestha</div>
+          <div style="font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.35);">Founder & Lead Architect</div>
+          <div style="font-size:9px;color:rgba(255,255,255,0.35);margin-top:8px;line-height:1.6;">hello@prenons.io<br>prenons.io</div>
+        </div>
+      </div>
+      <!-- back -->
+      <div class="bizcard" style="background:#E8372A;margin-top:8px;">
+        <div style="position:absolute;bottom:0;left:0;right:0;height:2px;background:rgba(0,0,0,0.2);"></div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:48px;color:rgba(0,0,0,0.12);letter-spacing:0.04em;line-height:1;position:absolute;bottom:16px;right:16px;">P</div>
+        <div>
+          <div style="font-size:9px;letter-spacing:0.24em;text-transform:uppercase;color:rgba(255,255,255,0.6);">Build. Think. Ship.</div>
+        </div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:0.06em;color:#fff;">PRENONS</div>
+      </div>
+    </div>
+
+    <!-- Social Post -->
+    <div>
+      <div class="mockup-label" style="color:rgba(0,0,0,0.3);">Social Post (1:1)</div>
+      <div class="social-post" style="background:#0D0D0D;aspect-ratio:1/1;">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#E8372A;"></div>
+        <div style="position:absolute;bottom:0;left:0;right:0;height:1px;background:rgba(255,255,255,0.08);"></div>
+        <div>
+          <div style="font-size:9px;letter-spacing:0.28em;text-transform:uppercase;color:#E8372A;margin-bottom:16px;">Now Open For Projects</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,5vw,52px);letter-spacing:0.02em;color:#fff;line-height:1.05;">WE BUILD<br>SYSTEMS<br>THAT LAST.</div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;">
+          <div style="font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.3);">@prenons.io</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:0.08em;color:rgba(255,255,255,0.15);">PRENONS</div>
+        </div>
+      </div>
+      <!-- second social -->
+      <div class="social-post" style="background:#E8372A;aspect-ratio:1.91/1;margin-top:8px;border-radius:6px;padding:24px;">
+        <div style="font-size:9px;letter-spacing:0.24em;text-transform:uppercase;color:rgba(0,0,0,0.4);">Software · UI/UX · IT · Consulting</div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,4vw,42px);color:#fff;letter-spacing:0.02em;line-height:1;">PRENONS<br><span style="font-size:0.6em;color:rgba(255,255,255,0.5);">STUDIO</span></div>
+          <div style="font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(0,0,0,0.35);">prenons.io</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Letterhead -->
+    <div>
+      <div class="mockup-label" style="color:rgba(0,0,0,0.3);">Letterhead</div>
+      <div class="letterhead">
+        <div class="lh-header">
+          <div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:0.06em;color:#0D0D0D;">PRENONS</div>
+            <div style="font-size:7px;letter-spacing:0.24em;text-transform:uppercase;color:#E8372A;">Technology Studio</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:7px;color:#999;line-height:1.6;">prenons.io<br>hello@prenons.io<br>Kathmandu, NP</div>
+          </div>
+        </div>
+        <div style="height:2px;background:#0D0D0D;margin-bottom:4px;"></div>
+        <div style="height:1px;background:#E8372A;margin-bottom:24px;"></div>
+        <div class="lh-lines">
+          <div class="lh-line xshort" style="background:#D0CEC8;height:5px;"></div>
+          <div style="height:14px;"></div>
+          <div class="lh-line" style="background:#E8E6E0;"></div>
+          <div class="lh-line" style="background:#E8E6E0;"></div>
+          <div class="lh-line short" style="background:#E8E6E0;"></div>
+          <div style="height:10px;"></div>
+          <div class="lh-line" style="background:#E8E6E0;"></div>
+          <div class="lh-line" style="background:#E8E6E0;"></div>
+          <div class="lh-line short" style="background:#E8E6E0;width:80%;"></div>
+          <div style="height:10px;"></div>
+          <div class="lh-line" style="background:#E8E6E0;"></div>
+          <div class="lh-line xshort" style="background:#E8E6E0;width:45%;"></div>
+        </div>
+        <div style="margin-top:auto;padding-top:20px;border-top:1px solid #E8E6E0;display:flex;justify-content:space-between;align-items:center;">
+          <div style="font-size:7px;color:#bbb;letter-spacing:0.1em;text-transform:uppercase;">Confidential</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:10px;color:#E8E6E0;letter-spacing:0.1em;">PRENONS</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Type Specimen -->
+  <div class="h-rule" style="background:rgba(0,0,0,0.08);"></div>
+  <div class="mockup-label" style="color:rgba(0,0,0,0.3);">Typography in Use</div>
+  <div class="type-block" style="background:rgba(0,0,0,0.04);border-color:rgba(0,0,0,0.08);">
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,6vw,80px);color:#0D0D0D;letter-spacing:0.02em;line-height:0.95;margin-bottom:24px;">Software<br>Delivered<br>Precisely.</div>
+    <div style="display:flex;gap:24px;padding-top:20px;border-top:1px solid rgba(0,0,0,0.08);">
+      <div style="font-size:13px;font-weight:300;color:rgba(0,0,0,0.55);line-height:1.75;max-width:360px;">We architect systems with surgical precision. IT infrastructure, custom software, UI/UX design, and strategic consulting — under one roof, executed with obsessive craft.</div>
+      <div style="margin-left:auto;text-align:right;">
+        <div style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(0,0,0,0.3);margin-bottom:4px;">Accent</div>
+        <div style="font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:#E8372A;">prenons.io</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Micro details -->
+  <div class="h-rule" style="background:rgba(0,0,0,0.08);"></div>
+  <div class="mockup-label" style="color:rgba(0,0,0,0.3);">Micro Details</div>
+  <div class="micro-grid">
+    <div class="micro-card" style="background:rgba(0,0,0,0.04);border-color:rgba(0,0,0,0.08);">
+      <div class="micro-label" style="color:rgba(0,0,0,0.3);">Radius</div>
+      <div class="micro-val" style="color:#0D0D0D;">0px — Sharp</div>
+      <div style="width:32px;height:16px;background:#0D0D0D;border-radius:0;margin-top:4px;"></div>
+    </div>
+    <div class="micro-card" style="background:rgba(0,0,0,0.04);border-color:rgba(0,0,0,0.08);">
+      <div class="micro-label" style="color:rgba(0,0,0,0.3);">Stroke</div>
+      <div class="micro-val" style="color:#0D0D0D;">1px Rule Lines</div>
+      <div style="width:100%;height:1px;background:#0D0D0D;margin-top:4px;"></div>
+    </div>
+    <div class="micro-card" style="background:rgba(0,0,0,0.04);border-color:rgba(0,0,0,0.08);">
+      <div class="micro-label" style="color:rgba(0,0,0,0.3);">Spacing Unit</div>
+      <div class="micro-val" style="color:#0D0D0D;">8px Base Grid</div>
+    </div>
+    <div class="micro-card" style="background:rgba(0,0,0,0.04);border-color:rgba(0,0,0,0.08);">
+      <div class="micro-label" style="color:rgba(0,0,0,0.3);">Tone</div>
+      <div class="micro-val" style="color:#0D0D0D;">Editorial Authority</div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     OPTION II — SLAB
+══════════════════════════════════════════ -->
+<section class="brand-section" id="opt2">
+<div class="section-inner" style="background:#0A0A0A;">
+
+  <div class="section-label">Brand Option</div>
+  <span class="section-num">02 / 05</span>
+
+  <div class="opt-header">
+    <div>
+      <div class="opt-meta" style="color:rgba(255,255,255,0.3);">The Industrial System</div>
+      <div class="opt-name" style="font-family:'Unbounded',sans-serif;font-weight:900;font-size:clamp(48px,8vw,100px);color:#fff;letter-spacing:-0.04em;">SLAB</div>
+      <p class="opt-tagline" style="color:rgba(255,255,255,0.4);">Unbounded weight. Acid yellow punching through black. Inspired by brutalist architecture and heavy manufacturing signage — the kind of brand that feels like infrastructure. When you see it, you don't wonder if it's a real company. You know it's a force.</p>
+    </div>
+    <div>
+      <div class="opt-palette">
+        <div class="pal-row">
+          <div class="pal-swatch main" style="background:#D4FF00;"><span style="color:rgba(0,0,0,0.5);">#D4FF00</span></div>
+          <div class="pal-swatch" style="background:#0A0A0A;border:1px solid rgba(255,255,255,0.1);"><span style="color:rgba(255,255,255,0.3);">#0A0A0A</span></div>
+        </div>
+        <div class="pal-row">
+          <div class="pal-swatch" style="background:#1A1A1A;"><span style="color:rgba(255,255,255,0.3);font-size:9px;">#1A1A1A</span></div>
+          <div class="pal-swatch" style="background:#3D3D3D;"><span style="color:rgba(255,255,255,0.35);font-size:9px;">#3D3D3D</span></div>
+          <div class="pal-swatch" style="background:#F5F5F5;"><span style="color:rgba(0,0,0,0.3);font-size:9px;">#F5F5F5</span></div>
+        </div>
+      </div>
+      <div class="opt-info-grid">
+        <div class="info-chip">
+          <div class="info-chip-label">Display</div>
+          <div class="info-chip-val" style="font-family:'Unbounded',sans-serif;font-weight:900;font-size:12px;color:#D4FF00;">Unbounded</div>
+        </div>
+        <div class="info-chip">
+          <div class="info-chip-label">Body</div>
+          <div class="info-chip-val" style="font-family:'Barlow Condensed',sans-serif;font-weight:300;font-size:12px;">Barlow Condensed</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOGOS -->
+  <div class="mockup-label">Logo Lockups</div>
+  <div class="logo-row">
+    <div class="logo-card" style="background:#0A0A0A;border:1px solid rgba(255,255,255,0.08);">
+      <div class="logo-card-label">Primary Dark</div>
+      <!-- Mark: square bracket + P -->
+      <svg width="48" height="32" viewBox="0 0 48 32" fill="none">
+        <line x1="0" y1="0" x2="0" y2="32" stroke="#D4FF00" stroke-width="3"/>
+        <line x1="0" y1="0" x2="10" y2="0" stroke="#D4FF00" stroke-width="3"/>
+        <line x1="0" y1="32" x2="10" y2="32" stroke="#D4FF00" stroke-width="3"/>
+        <path d="M18 4h12c4 0 6.5 2.5 6.5 7S34 18 30 18H18V4z" fill="#fff"/>
+        <line x1="18" y1="18" x2="18" y2="28" stroke="#fff" stroke-width="3"/>
+      </svg>
+      <div>
+        <div style="font-family:'Unbounded',sans-serif;font-weight:900;font-size:26px;letter-spacing:-0.04em;color:#fff;line-height:1;">PRENONS</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#D4FF00;margin-top:6px;font-weight:300;">Technology Studio</div>
+      </div>
+    </div>
+    <div class="logo-card" style="background:#D4FF00;">
+      <div class="logo-card-label" style="color:rgba(0,0,0,0.35);">Acid Variant</div>
+      <svg width="40" height="28" viewBox="0 0 48 32" fill="none">
+        <line x1="0" y1="0" x2="0" y2="32" stroke="#0A0A0A" stroke-width="3"/>
+        <line x1="0" y1="0" x2="10" y2="0" stroke="#0A0A0A" stroke-width="3"/>
+        <line x1="0" y1="32" x2="10" y2="32" stroke="#0A0A0A" stroke-width="3"/>
+        <path d="M18 4h12c4 0 6.5 2.5 6.5 7S34 18 30 18H18V4z" fill="#0A0A0A"/>
+        <line x1="18" y1="18" x2="18" y2="28" stroke="#0A0A0A" stroke-width="3"/>
+      </svg>
+      <div>
+        <div style="font-family:'Unbounded',sans-serif;font-weight:900;font-size:24px;letter-spacing:-0.04em;color:#0A0A0A;line-height:1;">PRENONS</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(0,0,0,0.45);margin-top:6px;">Technology Studio</div>
+      </div>
+    </div>
+    <div class="logo-card" style="background:#1A1A1A;border:1px solid rgba(255,255,255,0.06);align-items:center;justify-content:center;">
+      <div class="logo-card-label">Compact</div>
+      <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+        <rect x="0" y="0" width="56" height="56" fill="none"/>
+        <line x1="4" y1="4" x2="4" y2="52" stroke="#D4FF00" stroke-width="3.5"/>
+        <line x1="4" y1="4" x2="16" y2="4" stroke="#D4FF00" stroke-width="3.5"/>
+        <line x1="4" y1="52" x2="16" y2="52" stroke="#D4FF00" stroke-width="3.5"/>
+        <path d="M22 12h14c5 0 8 3 8 9s-3 9-8 9H22V12z" fill="white"/>
+        <line x1="22" y1="30" x2="22" y2="44" stroke="white" stroke-width="3.5"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="h-rule"></div>
+  <div class="mockup-label">Mockups</div>
+  <div class="mockup-row">
+    <!-- Biz Card -->
+    <div>
+      <div class="mockup-label">Business Card</div>
+      <div class="bizcard" style="background:#0A0A0A;border:1px solid rgba(255,255,255,0.08);">
+        <div style="position:absolute;top:0;left:0;bottom:0;width:4px;background:#D4FF00;"></div>
+        <div style="padding-left:12px;">
+          <div style="font-family:'Unbounded',sans-serif;font-weight:900;font-size:16px;letter-spacing:-0.03em;color:#fff;">PRENONS</div>
+          <div style="font-size:8px;letter-spacing:0.2em;text-transform:uppercase;color:#D4FF00;margin-top:2px;font-family:'Barlow Condensed',sans-serif;font-weight:300;">Technology Studio</div>
+        </div>
+        <div style="padding-left:12px;">
+          <div style="font-size:11px;color:#fff;font-weight:500;">Prajwol Shrestha</div>
+          <div style="font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-top:2px;font-family:'Barlow Condensed',sans-serif;font-weight:300;">Founder</div>
+          <div style="font-size:8px;color:rgba(255,255,255,0.3);margin-top:6px;line-height:1.5;font-family:'Barlow Condensed',sans-serif;font-weight:300;">hello@prenons.io · prenons.io</div>
+        </div>
+      </div>
+      <div class="bizcard" style="background:#D4FF00;margin-top:8px;">
+        <div style="font-family:'Unbounded',sans-serif;font-weight:900;font-size:52px;color:rgba(0,0,0,0.08);letter-spacing:-0.05em;position:absolute;bottom:-8px;right:12px;line-height:1;">P</div>
+        <div style="font-size:8px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(0,0,0,0.4);font-family:'Barlow Condensed',sans-serif;">Precision. Built.</div>
+        <div style="font-family:'Unbounded',sans-serif;font-weight:900;font-size:18px;color:#0A0A0A;letter-spacing:-0.03em;">PRENONS</div>
+      </div>
+    </div>
+
+    <!-- Social -->
+    <div>
+      <div class="mockup-label">Social Posts</div>
+      <div class="social-post" style="background:#0A0A0A;border:1px solid rgba(255,255,255,0.07);">
+        <div>
+          <div style="display:inline-block;background:#D4FF00;padding:4px 10px;font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:#0A0A0A;font-family:'Barlow Condensed',sans-serif;font-weight:700;margin-bottom:20px;">New Service</div>
+          <div style="font-family:'Unbounded',sans-serif;font-weight:900;font-size:clamp(26px,4vw,40px);color:#fff;letter-spacing:-0.03em;line-height:1.05;">UI/UX<br>REDESIGNS<br><span style="color:#D4FF00;">→</span></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;">
+          <div style="font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.25);font-family:'Barlow Condensed',sans-serif;">@prenons.io</div>
+          <div style="font-family:'Unbounded',sans-serif;font-weight:900;font-size:13px;color:rgba(255,255,255,0.1);letter-spacing:-0.03em;">PRENONS</div>
+        </div>
+      </div>
+      <div style="background:#D4FF00;border-radius:6px;padding:20px 24px;margin-top:8px;aspect-ratio:1.91/1;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;">
+        <div style="font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(0,0,0,0.4);font-family:'Barlow Condensed',sans-serif;">Kathmandu · Nepal</div>
+        <div>
+          <div style="font-family:'Unbounded',sans-serif;font-weight:900;font-size:clamp(20px,3vw,30px);color:#0A0A0A;letter-spacing:-0.03em;line-height:1.1;">WE BUILD<br>WHAT MATTERS.</div>
+          <div style="font-size:10px;font-family:'Barlow Condensed',sans-serif;font-weight:300;color:rgba(0,0,0,0.5);letter-spacing:0.1em;margin-top:8px;">IT · SOFTWARE · DESIGN · CONSULTING</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Letterhead -->
+    <div>
+      <div class="mockup-label">Letterhead</div>
+      <div class="letterhead" style="background:#F5F5F5;">
+        <div class="lh-header">
+          <div>
+            <div style="font-family:'Unbounded',sans-serif;font-weight:900;font-size:14px;letter-spacing:-0.03em;color:#0A0A0A;">PRENONS</div>
+            <div style="font-size:7px;letter-spacing:0.2em;text-transform:uppercase;color:#D4FF00;font-family:'Barlow Condensed',sans-serif;margin-top:2px;">Technology Studio</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:7px;color:#999;line-height:1.6;font-family:'Barlow Condensed',sans-serif;font-weight:300;">prenons.io<br>hello@prenons.io</div>
+          </div>
+        </div>
+        <div style="height:3px;background:#0A0A0A;"></div>
+        <div style="height:2px;background:#D4FF00;margin-bottom:20px;"></div>
+        <div class="lh-body-lines" style="gap:5px;">
+          <div style="height:6px;border-radius:0;background:#E0E0E0;"></div>
+          <div style="height:6px;border-radius:0;background:#E0E0E0;"></div>
+          <div style="height:6px;border-radius:0;background:#E0E0E0;width:75%;"></div>
+          <div style="height:12px;"></div>
+          <div style="height:6px;background:#E0E0E0;border-radius:0;"></div>
+          <div style="height:6px;background:#E0E0E0;border-radius:0;"></div>
+          <div style="height:6px;background:#E0E0E0;border-radius:0;width:50%;"></div>
+        </div>
+        <div style="margin-top:16px;border-top:1px solid #E0E0E0;padding-top:12px;display:flex;justify-content:space-between;">
+          <div style="font-size:7px;color:#bbb;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.1em;text-transform:uppercase;">Page 01</div>
+          <div style="font-family:'Unbounded',sans-serif;font-weight:900;font-size:8px;color:#E0E0E0;letter-spacing:-0.03em;">PRENONS</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="h-rule"></div>
+  <div class="type-block">
+    <div style="font-family:'Unbounded',sans-serif;font-weight:900;font-size:clamp(32px,6vw,72px);letter-spacing:-0.04em;color:#fff;line-height:0.95;margin-bottom:20px;">PRECISION<br>ENGINEERED<br><span style="color:#D4FF00;">SYSTEMS.</span></div>
+    <div style="font-family:'Barlow Condensed',sans-serif;font-weight:300;font-size:16px;letter-spacing:0.06em;color:rgba(255,255,255,0.4);line-height:1.7;max-width:400px;">From architecture to deployment — Prenons is the engineering partner that doesn't cut corners. Ever.</div>
+  </div>
+
+</div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     OPTION III — GHOST
+══════════════════════════════════════════ -->
+<section class="brand-section" id="opt3">
+<div class="section-inner" style="background:#FAFAF8;">
+
+  <div class="section-label" style="color:rgba(0,0,0,0.25);">Brand Option</div>
+  <span class="section-num" style="color:rgba(0,0,0,0.1);">03 / 05</span>
+
+  <div class="opt-header">
+    <div>
+      <div class="opt-meta" style="color:rgba(0,0,0,0.3);">The Serif Authority System</div>
+      <div class="opt-name" style="font-family:'League Spartan',sans-serif;font-weight:900;font-size:clamp(56px,9vw,110px);color:#1A1A1A;letter-spacing:-0.04em;line-height:0.88;">GHOST</div>
+      <p class="opt-tagline" style="color:rgba(0,0,0,0.45);">White space is the loudest element. Heavy condensed sans meets an off-white field — the same contrast principle used by The New Yorker and Swiss modernist design. Invisible until needed, impossible to forget once seen. The mark: a hollow P that suggests both presence and negative space.</p>
+    </div>
+    <div>
+      <div class="opt-palette">
+        <div class="pal-row">
+          <div class="pal-swatch main" style="background:#1A1A1A;"><span style="color:rgba(255,255,255,0.4);">#1A1A1A</span></div>
+          <div class="pal-swatch" style="background:#C4A35A;"><span style="color:rgba(0,0,0,0.4);">#C4A35A</span></div>
+        </div>
+        <div class="pal-row">
+          <div class="pal-swatch main" style="background:#FAFAF8;border:1px solid rgba(0,0,0,0.07);"><span style="color:rgba(0,0,0,0.3);">#FAFAF8</span></div>
+          <div class="pal-swatch" style="background:#E8E4DC;border:1px solid rgba(0,0,0,0.06);"><span style="color:rgba(0,0,0,0.3);font-size:9px;">#E8E4DC</span></div>
+        </div>
+      </div>
+      <div class="opt-info-grid">
+        <div class="info-chip" style="background:rgba(0,0,0,0.03);border-color:rgba(0,0,0,0.07);">
+          <div class="info-chip-label" style="color:rgba(0,0,0,0.25);">Display</div>
+          <div class="info-chip-val" style="color:#1A1A1A;font-family:'League Spartan',sans-serif;font-weight:900;font-size:13px;letter-spacing:-0.03em;">League Spartan</div>
+        </div>
+        <div class="info-chip" style="background:rgba(0,0,0,0.03);border-color:rgba(0,0,0,0.07);">
+          <div class="info-chip-label" style="color:rgba(0,0,0,0.25);">Body</div>
+          <div class="info-chip-val" style="color:#1A1A1A;font-family:'Familjen Grotesk',sans-serif;font-size:12px;">Familjen Grotesk</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mockup-label" style="color:rgba(0,0,0,0.25);">Logo Lockups</div>
+  <div class="logo-row">
+    <div class="logo-card" style="background:#1A1A1A;">
+      <div class="logo-card-label" style="color:rgba(255,255,255,0.2);">Primary</div>
+      <!-- Hollow P mark -->
+      <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+        <path d="M8 8h16c5.5 0 9 3.5 9 9S29.5 26 24 26H8V8z" stroke="white" stroke-width="2" fill="none"/>
+        <line x1="8" y1="26" x2="8" y2="38" stroke="white" stroke-width="2"/>
+        <circle cx="36" cy="36" r="6" stroke="#C4A35A" stroke-width="1.5" fill="none"/>
+        <line x1="36" y1="33" x2="36" y2="39" stroke="#C4A35A" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <div>
+        <div style="font-family:'League Spartan',sans-serif;font-weight:900;font-size:30px;letter-spacing:-0.04em;color:#fff;line-height:1;">PRENONS</div>
+        <div style="font-family:'Familjen Grotesk',sans-serif;font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:#C4A35A;margin-top:5px;">Technology Studio</div>
+      </div>
+    </div>
+    <div class="logo-card" style="background:#FAFAF8;border:1px solid rgba(0,0,0,0.08);">
+      <div class="logo-card-label" style="color:rgba(0,0,0,0.2);">Light Mode</div>
+      <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+        <path d="M8 8h16c5.5 0 9 3.5 9 9S29.5 26 24 26H8V8z" stroke="#1A1A1A" stroke-width="2" fill="none"/>
+        <line x1="8" y1="26" x2="8" y2="38" stroke="#1A1A1A" stroke-width="2"/>
+        <circle cx="36" cy="36" r="6" stroke="#C4A35A" stroke-width="1.5" fill="none"/>
+      </svg>
+      <div>
+        <div style="font-family:'League Spartan',sans-serif;font-weight:900;font-size:30px;letter-spacing:-0.04em;color:#1A1A1A;line-height:1;">PRENONS</div>
+        <div style="font-family:'Familjen Grotesk',sans-serif;font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:#C4A35A;margin-top:5px;">Technology Studio</div>
+      </div>
+    </div>
+    <div class="logo-card" style="background:#C4A35A;align-items:center;justify-content:center;">
+      <div class="logo-card-label" style="color:rgba(255,255,255,0.4);">Gold Stamp</div>
+      <div style="font-family:'League Spartan',sans-serif;font-weight:900;font-size:40px;letter-spacing:-0.04em;color:#fff;line-height:1;">P.</div>
+      <div style="font-size:9px;letter-spacing:0.28em;text-transform:uppercase;color:rgba(255,255,255,0.6);font-family:'Familjen Grotesk',sans-serif;margin-top:8px;">PRENONS</div>
+    </div>
+  </div>
+
+  <div class="h-rule" style="background:rgba(0,0,0,0.06);"></div>
+  <div class="mockup-label" style="color:rgba(0,0,0,0.25);">Mockups</div>
+  <div class="mockup-row">
+    <!-- Biz Card -->
+    <div>
+      <div class="mockup-label" style="color:rgba(0,0,0,0.25);">Business Card</div>
+      <div class="bizcard" style="background:#1A1A1A;">
+        <div style="position:absolute;bottom:0;left:0;right:0;height:2px;background:#C4A35A;"></div>
+        <div>
+          <div style="font-family:'League Spartan',sans-serif;font-weight:900;font-size:18px;letter-spacing:-0.03em;color:#fff;">PRENONS</div>
+          <div style="font-size:8px;letter-spacing:0.2em;text-transform:uppercase;color:#C4A35A;font-family:'Familjen Grotesk',sans-serif;margin-top:3px;">Technology Studio</div>
+        </div>
+        <div>
+          <div style="font-size:11px;color:#fff;font-family:'Familjen Grotesk',sans-serif;margin-bottom:4px;">Prajwol Shrestha</div>
+          <div style="font-size:8px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);font-family:'Familjen Grotesk',sans-serif;">Founder</div>
+          <div style="font-size:8px;color:rgba(255,255,255,0.3);margin-top:6px;line-height:1.6;font-family:'Familjen Grotesk',sans-serif;">hello@prenons.io</div>
+        </div>
+      </div>
+      <div class="bizcard" style="background:#FAFAF8;border:1px solid rgba(0,0,0,0.08);margin-top:8px;">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:#1A1A1A;"></div>
+        <div style="font-family:'League Spartan',sans-serif;font-weight:900;font-size:64px;color:rgba(0,0,0,0.05);letter-spacing:-0.04em;position:absolute;right:-4px;bottom:-8px;line-height:1;">P</div>
+        <div style="font-size:8px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(0,0,0,0.3);font-family:'Familjen Grotesk',sans-serif;">intelligence · by · design</div>
+        <div style="font-family:'League Spartan',sans-serif;font-weight:900;font-size:20px;letter-spacing:-0.03em;color:#1A1A1A;">PRENONS</div>
+      </div>
+    </div>
+
+    <!-- Social -->
+    <div>
+      <div class="mockup-label" style="color:rgba(0,0,0,0.25);">Social Posts</div>
+      <div class="social-post" style="background:#1A1A1A;">
+        <div style="font-size:9px;letter-spacing:0.24em;text-transform:uppercase;color:#C4A35A;font-family:'Familjen Grotesk',sans-serif;">Case Study</div>
+        <div style="font-family:'League Spartan',sans-serif;font-weight:900;font-size:clamp(28px,4.5vw,44px);color:#fff;letter-spacing:-0.04em;line-height:1.05;">REDUCED<br>LOAD TIME<br>BY 94%.</div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;">
+          <div style="font-size:9px;color:rgba(255,255,255,0.25);font-family:'Familjen Grotesk',sans-serif;letter-spacing:0.1em;">@prenons.io</div>
+          <div style="font-family:'League Spartan',sans-serif;font-weight:900;font-size:14px;color:rgba(255,255,255,0.1);letter-spacing:-0.03em;">PRENONS</div>
+        </div>
+      </div>
+      <div style="background:#FAFAF8;border:1px solid rgba(0,0,0,0.08);border-radius:6px;padding:22px;margin-top:8px;aspect-ratio:1.91/1;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#1A1A1A;"></div>
+        <div style="font-size:8px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(0,0,0,0.3);font-family:'Familjen Grotesk',sans-serif;">IT Consulting · UI/UX · Software Dev</div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;">
+          <div style="font-family:'League Spartan',sans-serif;font-weight:900;font-size:clamp(22px,3vw,34px);color:#1A1A1A;letter-spacing:-0.04em;line-height:1.05;">PRENONS<br><span style="color:#C4A35A;font-size:0.55em;letter-spacing:0.02em;font-family:'Familjen Grotesk',sans-serif;font-weight:400;">Technology Studio</span></div>
+          <div style="font-size:9px;color:rgba(0,0,0,0.3);font-family:'Familjen Grotesk',sans-serif;">prenons.io</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Letterhead -->
+    <div>
+      <div class="mockup-label" style="color:rgba(0,0,0,0.25);">Letterhead</div>
+      <div class="letterhead">
+        <div class="lh-header">
+          <div>
+            <div style="font-family:'League Spartan',sans-serif;font-weight:900;font-size:16px;letter-spacing:-0.03em;color:#1A1A1A;">PRENONS</div>
+            <div style="font-size:7px;letter-spacing:0.2em;text-transform:uppercase;color:#C4A35A;font-family:'Familjen Grotesk',sans-serif;margin-top:2px;">Technology Studio</div>
+          </div>
+          <div style="text-align:right;font-size:7px;color:#999;line-height:1.6;font-family:'Familjen Grotesk',sans-serif;">prenons.io<br>hello@prenons.io</div>
+        </div>
+        <div style="height:1px;background:#1A1A1A;"></div>
+        <div style="height:1px;background:#C4A35A;margin-top:3px;margin-bottom:20px;width:30%;"></div>
+        <div class="lh-body-lines">
+          <div style="height:5px;background:#E8E6E0;border-radius:0;"></div>
+          <div style="height:5px;background:#E8E6E0;border-radius:0;"></div>
+          <div style="height:5px;background:#E8E6E0;border-radius:0;width:70%;"></div>
+          <div style="height:10px;"></div>
+          <div style="height:5px;background:#E8E6E0;border-radius:0;"></div>
+          <div style="height:5px;background:#E8E6E0;border-radius:0;width:85%;"></div>
+          <div style="height:5px;background:#E8E6E0;border-radius:0;width:40%;"></div>
+        </div>
+        <div style="margin-top:16px;border-top:1px solid #E8E6E0;padding-top:10px;display:flex;justify-content:space-between;align-items:center;">
+          <div style="font-size:6px;color:#ccc;font-family:'Familjen Grotesk',sans-serif;text-transform:uppercase;letter-spacing:0.1em;">Confidential</div>
+          <div style="display:flex;align-items:center;gap:4px;">
+            <div style="width:4px;height:4px;border-radius:50%;background:#C4A35A;"></div>
+            <div style="font-family:'League Spartan',sans-serif;font-weight:900;font-size:8px;color:#E0E0E0;letter-spacing:-0.02em;">PRENONS</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="h-rule" style="background:rgba(0,0,0,0.06);"></div>
+  <div class="type-block" style="background:rgba(0,0,0,0.03);border-color:rgba(0,0,0,0.06);">
+    <div style="font-family:'League Spartan',sans-serif;font-weight:900;font-size:clamp(36px,6vw,76px);letter-spacing:-0.04em;color:#1A1A1A;line-height:0.92;margin-bottom:20px;">CRAFT MEETS<br>ENGINEERING.</div>
+    <div style="display:flex;gap:24px;align-items:flex-start;padding-top:16px;border-top:1px solid rgba(0,0,0,0.08);">
+      <div style="width:2px;flex-shrink:0;background:#C4A35A;self-align:stretch;height:60px;"></div>
+      <div style="font-family:'Familjen Grotesk',sans-serif;font-size:14px;color:rgba(0,0,0,0.45);line-height:1.75;">Prenons designs, builds, and scales digital products for companies that refuse to compromise. IT infrastructure, software, UI/UX, consulting.</div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     OPTION IV — RAW
+══════════════════════════════════════════ -->
+<section class="brand-section" id="opt4">
+<div class="section-inner" style="background:#0F0F0F;">
+
+  <div class="section-label">Brand Option</div>
+  <span class="section-num">04 / 05</span>
+
+  <div class="opt-header">
+    <div>
+      <div class="opt-meta" style="color:rgba(255,255,255,0.25);">The Brutalist System</div>
+      <div class="opt-name" style="font-family:'Krona One',sans-serif;font-size:clamp(48px,7vw,88px);color:#fff;letter-spacing:-0.02em;line-height:0.92;">RAW</div>
+      <p class="opt-tagline" style="color:rgba(255,255,255,0.4);">Krona One — a geometric slab that feels machine-stamped. Paired with electric teal, this system occupies the space between hacker culture and serious engineering. It doesn't ask for permission. The mark is a double-diagonal slash through the P — like a commit hash, like struck-through code, like a system that marks itself done.</p>
+    </div>
+    <div>
+      <div class="opt-palette">
+        <div class="pal-row">
+          <div class="pal-swatch main" style="background:#00E5CC;"><span style="color:rgba(0,0,0,0.5);">#00E5CC</span></div>
+          <div class="pal-swatch" style="background:#0F0F0F;border:1px solid rgba(255,255,255,0.1);"><span style="color:rgba(255,255,255,0.3);">#0F0F0F</span></div>
+        </div>
+        <div class="pal-row">
+          <div class="pal-swatch" style="background:#1E1E1E;"><span style="color:rgba(255,255,255,0.3);font-size:9px;">#1E1E1E</span></div>
+          <div class="pal-swatch" style="background:#FF3366;"><span style="color:rgba(255,255,255,0.8);font-size:9px;">#FF3366</span></div>
+          <div class="pal-swatch" style="background:#F0F0F0;"><span style="color:rgba(0,0,0,0.3);font-size:9px;">#F0F0F0</span></div>
+        </div>
+      </div>
+      <div class="opt-info-grid">
+        <div class="info-chip">
+          <div class="info-chip-label">Display</div>
+          <div class="info-chip-val" style="font-family:'Krona One',sans-serif;font-size:12px;color:#00E5CC;">Krona One</div>
+        </div>
+        <div class="info-chip">
+          <div class="info-chip-label">Body</div>
+          <div class="info-chip-val" style="font-family:'Barlow Condensed',sans-serif;font-weight:300;font-size:12px;letter-spacing:0.04em;">Barlow Condensed</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mockup-label">Logo Lockups</div>
+  <div class="logo-row">
+    <div class="logo-card" style="background:#0F0F0F;border:1px solid rgba(255,255,255,0.08);">
+      <div class="logo-card-label">Primary Dark</div>
+      <!-- P with diagonal slash -->
+      <svg width="48" height="40" viewBox="0 0 48 40" fill="none">
+        <path d="M6 4h14c5 0 8 2.8 8 8s-3 8-8 8H6V4z" stroke="#00E5CC" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
+        <line x1="6" y1="20" x2="6" y2="36" stroke="#00E5CC" stroke-width="2.5" stroke-linecap="square"/>
+        <!-- Diagonal slash mark -->
+        <line x1="32" y1="8" x2="46" y2="32" stroke="#FF3366" stroke-width="2" stroke-linecap="round"/>
+        <line x1="36" y1="8" x2="50" y2="32" stroke="rgba(255,51,102,0.3)" stroke-width="1" stroke-linecap="round"/>
+      </svg>
+      <div>
+        <div style="font-family:'Krona One',sans-serif;font-size:24px;color:#fff;letter-spacing:-0.01em;line-height:1;">PRENONS</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:0.28em;text-transform:uppercase;color:#00E5CC;margin-top:5px;font-weight:300;">Technology Studio</div>
+      </div>
+    </div>
+    <div class="logo-card" style="background:#00E5CC;">
+      <div class="logo-card-label" style="color:rgba(0,0,0,0.3);">Teal Variant</div>
+      <svg width="40" height="34" viewBox="0 0 48 40" fill="none">
+        <path d="M6 4h14c5 0 8 2.8 8 8s-3 8-8 8H6V4z" stroke="#0F0F0F" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
+        <line x1="6" y1="20" x2="6" y2="36" stroke="#0F0F0F" stroke-width="2.5" stroke-linecap="square"/>
+        <line x1="32" y1="8" x2="46" y2="32" stroke="rgba(0,0,0,0.3)" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <div>
+        <div style="font-family:'Krona One',sans-serif;font-size:22px;color:#0F0F0F;letter-spacing:-0.01em;line-height:1;">PRENONS</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:9px;letter-spacing:0.28em;text-transform:uppercase;color:rgba(0,0,0,0.4);margin-top:5px;font-weight:300;">Technology Studio</div>
+      </div>
+    </div>
+    <div class="logo-card" style="background:#1E1E1E;border:1px solid rgba(255,255,255,0.06);align-items:center;justify-content:center;">
+      <div class="logo-card-label">Icon</div>
+      <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+        <path d="M8 8h18c6 0 10 3.5 10 10S32 28 26 28H8V8z" stroke="#00E5CC" stroke-width="3" fill="none" stroke-linejoin="round"/>
+        <line x1="8" y1="28" x2="8" y2="48" stroke="#00E5CC" stroke-width="3" stroke-linecap="square"/>
+        <line x1="36" y1="12" x2="52" y2="44" stroke="#FF3366" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="41" y1="12" x2="57" y2="44" stroke="rgba(255,51,102,0.25)" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="h-rule"></div>
+  <div class="mockup-label">Mockups</div>
+  <div class="mockup-row">
+    <div>
+      <div class="mockup-label">Business Card</div>
+      <div class="bizcard" style="background:#0F0F0F;border:2px solid #00E5CC;">
+        <div>
+          <div style="font-family:'Krona One',sans-serif;font-size:15px;color:#fff;letter-spacing:-0.01em;">PRENONS</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:8px;letter-spacing:0.24em;text-transform:uppercase;color:#00E5CC;margin-top:2px;font-weight:300;">Technology Studio</div>
+        </div>
+        <div>
+          <div style="font-size:11px;color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:0.04em;">Prajwol Shrestha</div>
+          <div style="font-size:8px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.3);font-family:'Barlow Condensed',sans-serif;font-weight:300;margin-top:2px;">Founder</div>
+          <div style="font-size:8px;color:rgba(255,255,255,0.3);margin-top:6px;line-height:1.5;font-family:'Barlow Condensed',sans-serif;font-weight:300;">hello@prenons.io · prenons.io</div>
+        </div>
+      </div>
+      <div class="bizcard" style="background:#00E5CC;margin-top:8px;overflow:hidden;">
+        <div style="font-family:'Krona One',sans-serif;font-size:60px;color:rgba(0,0,0,0.08);letter-spacing:-0.02em;position:absolute;bottom:-12px;right:-4px;line-height:1;">P</div>
+        <div style="font-size:8px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(0,0,0,0.4);font-family:'Barlow Condensed',sans-serif;font-weight:300;">Build · Ship · Scale</div>
+        <div style="font-family:'Krona One',sans-serif;font-size:20px;color:#0F0F0F;letter-spacing:-0.01em;">PRENONS</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="mockup-label">Social Posts</div>
+      <div class="social-post" style="background:#0F0F0F;border:1px solid rgba(0,229,204,0.15);">
+        <div>
+          <div style="display:inline-block;background:#FF3366;padding:3px 10px;font-family:'Barlow Condensed',sans-serif;font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:#fff;font-weight:700;margin-bottom:16px;">Open Source Minded</div>
+          <div style="font-family:'Krona One',sans-serif;font-size:clamp(24px,4vw,38px);color:#fff;letter-spacing:-0.02em;line-height:1.05;">SHIP FAST.<br><span style="color:#00E5CC;">BREAK NOTHING.</span></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;">
+          <div style="font-size:9px;color:rgba(255,255,255,0.25);font-family:'Barlow Condensed',sans-serif;letter-spacing:0.1em;font-weight:300;">@prenons.io</div>
+          <div style="font-family:'Krona One',sans-serif;font-size:13px;color:rgba(255,255,255,0.08);">PRENONS</div>
+        </div>
+      </div>
+      <div style="background:#00E5CC;border-radius:6px;padding:20px 22px;margin-top:8px;aspect-ratio:1.91/1;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;position:relative;">
+        <div style="font-size:8px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(0,0,0,0.4);font-family:'Barlow Condensed',sans-serif;font-weight:300;">Software · IT · Design · Consulting</div>
+        <div>
+          <div style="font-family:'Krona One',sans-serif;font-size:clamp(18px,2.5vw,28px);color:#0F0F0F;letter-spacing:-0.02em;line-height:1.1;">PRENONS STUDIO</div>
+          <div style="font-size:10px;font-family:'Barlow Condensed',sans-serif;font-weight:300;color:rgba(0,0,0,0.4);letter-spacing:0.1em;margin-top:6px;">prenons.io</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="mockup-label">Letterhead</div>
+      <div class="letterhead" style="background:#F0F0F0;">
+        <div class="lh-header">
+          <div>
+            <div style="font-family:'Krona One',sans-serif;font-size:12px;color:#0F0F0F;">PRENONS</div>
+            <div style="font-size:7px;letter-spacing:0.2em;text-transform:uppercase;color:#00A896;font-family:'Barlow Condensed',sans-serif;font-weight:300;margin-top:2px;">Technology Studio</div>
+          </div>
+          <div style="text-align:right;font-size:7px;color:#999;line-height:1.6;font-family:'Barlow Condensed',sans-serif;font-weight:300;">prenons.io<br>hello@prenons.io</div>
+        </div>
+        <div style="display:flex;gap:2px;margin-bottom:20px;">
+          <div style="height:3px;background:#0F0F0F;flex:3;"></div>
+          <div style="height:3px;background:#00E5CC;flex:1;"></div>
+          <div style="height:3px;background:#FF3366;flex:0.5;"></div>
+        </div>
+        <div class="lh-body-lines">
+          <div style="height:5px;background:#D8D8D8;border-radius:0;"></div>
+          <div style="height:5px;background:#D8D8D8;border-radius:0;"></div>
+          <div style="height:5px;background:#D8D8D8;border-radius:0;width:65%;"></div>
+          <div style="height:12px;"></div>
+          <div style="height:5px;background:#D8D8D8;border-radius:0;"></div>
+          <div style="height:5px;background:#D8D8D8;border-radius:0;width:80%;"></div>
+        </div>
+        <div style="margin-top:auto;border-top:1px solid #D0D0D0;padding-top:10px;display:flex;justify-content:space-between;">
+          <div style="font-size:6px;color:#bbb;font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.1em;">Confidential</div>
+          <div style="font-family:'Krona One',sans-serif;font-size:8px;color:#D8D8D8;">PRENONS</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="h-rule"></div>
+  <div class="type-block">
+    <div style="font-family:'Krona One',sans-serif;font-size:clamp(28px,5vw,60px);color:#fff;letter-spacing:-0.02em;line-height:0.95;margin-bottom:16px;">ENGINEER<br>EVERYTHING.</div>
+    <div style="font-family:'Barlow Condensed',sans-serif;font-weight:300;font-size:16px;letter-spacing:0.06em;color:rgba(255,255,255,0.35);line-height:1.7;">Full-stack engineering, product design, IT architecture. We build systems that scale beyond your projections and interfaces your users fall in love with.</div>
+  </div>
+
+</div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     OPTION V — MARK (RECOMMENDED)
+══════════════════════════════════════════ -->
+<section class="brand-section" id="opt5">
+<div class="section-inner" style="background:#080808;">
+
+  <div class="section-label">Brand Option · <span style="color:#C9FF00;">Recommended</span></div>
+  <span class="section-num">05 / 05</span>
+
+  <div style="display:inline-block;background:#C9FF00;padding:6px 16px;border-radius:2px;font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#080808;margin-bottom:40px;">★ Editor's Choice — Most Distinctive</div>
+
+  <div class="opt-header">
+    <div>
+      <div class="opt-meta" style="color:rgba(255,255,255,0.25);">The Typographic Tension System</div>
+      <div class="opt-name" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(52px,8vw,104px);color:#fff;letter-spacing:-0.04em;line-height:0.88;">MARK</div>
+      <p class="opt-tagline" style="color:rgba(255,255,255,0.45);">Bricolage Grotesque at maximum weight — variable optical sizing means it looks custom at every size. Acid lime on absolute dark. The mark is a simple N-rotated glyph that reads as both P and forward motion. No competitor in Kathmandu uses acid lime. None. This is the one that gets remembered at a conference, on a business card across a table, on a billboard from a vehicle. It owns the moment.</p>
+    </div>
+    <div>
+      <div class="opt-palette">
+        <div class="pal-row">
+          <div class="pal-swatch main" style="background:#C9FF00;"><span style="color:rgba(0,0,0,0.55);">#C9FF00</span></div>
+          <div class="pal-swatch" style="background:#080808;border:1px solid rgba(255,255,255,0.1);"><span style="color:rgba(255,255,255,0.3);">#080808</span></div>
+        </div>
+        <div class="pal-row">
+          <div class="pal-swatch" style="background:#181818;"><span style="color:rgba(255,255,255,0.25);font-size:9px;">#181818</span></div>
+          <div class="pal-swatch" style="background:#FFFFFF;border:1px solid rgba(0,0,0,0.1);"><span style="color:rgba(0,0,0,0.3);font-size:9px;">#FFFFFF</span></div>
+          <div class="pal-swatch" style="background:#A8D400;"><span style="color:rgba(0,0,0,0.4);font-size:9px;">#A8D400</span></div>
+        </div>
+      </div>
+      <div class="opt-info-grid">
+        <div class="info-chip">
+          <div class="info-chip-label">Display</div>
+          <div class="info-chip-val" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:13px;color:#C9FF00;letter-spacing:-0.03em;">Bricolage 800</div>
+        </div>
+        <div class="info-chip">
+          <div class="info-chip-label">Body</div>
+          <div class="info-chip-val" style="font-family:'DM Sans',sans-serif;font-weight:300;font-size:12px;">DM Sans Light</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mockup-label">Logo Lockups</div>
+  <div class="logo-row">
+    <!-- Primary -->
+    <div class="logo-card" style="background:#080808;border:1px solid rgba(255,255,255,0.08);">
+      <div class="logo-card-label">Primary</div>
+      <!-- P mark: angular, minimal, decisive -->
+      <svg width="52" height="44" viewBox="0 0 52 44" fill="none">
+        <!-- Main P structure -->
+        <line x1="6" y1="4" x2="6" y2="40" stroke="white" stroke-width="3" stroke-linecap="square"/>
+        <path d="M6 4 L28 4 C36 4 40 8 40 16 C40 24 36 28 28 28 L6 28" stroke="white" stroke-width="3" fill="none" stroke-linecap="square" stroke-linejoin="miter"/>
+        <!-- Acid accent line -->
+        <line x1="6" y1="4" x2="40" y2="4" stroke="#C9FF00" stroke-width="3" stroke-linecap="square"/>
+        <!-- Dot accent -->
+        <rect x="44" y="36" width="7" height="7" fill="#C9FF00"/>
+      </svg>
+      <div>
+        <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:32px;letter-spacing:-0.04em;color:#fff;line-height:1;">PRENONS</div>
+        <div style="font-size:9px;letter-spacing:0.28em;text-transform:uppercase;color:#C9FF00;margin-top:6px;font-family:'DM Sans',sans-serif;font-weight:300;">Technology Studio</div>
+      </div>
+    </div>
+    <!-- Light -->
+    <div class="logo-card" style="background:#fff;">
+      <div class="logo-card-label" style="color:rgba(0,0,0,0.2);">Light Mode</div>
+      <svg width="52" height="44" viewBox="0 0 52 44" fill="none">
+        <line x1="6" y1="4" x2="6" y2="40" stroke="#080808" stroke-width="3" stroke-linecap="square"/>
+        <path d="M6 4 L28 4 C36 4 40 8 40 16 C40 24 36 28 28 28 L6 28" stroke="#080808" stroke-width="3" fill="none" stroke-linecap="square" stroke-linejoin="miter"/>
+        <line x1="6" y1="4" x2="40" y2="4" stroke="#A8D400" stroke-width="3" stroke-linecap="square"/>
+        <rect x="44" y="36" width="7" height="7" fill="#A8D400"/>
+      </svg>
+      <div>
+        <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:32px;letter-spacing:-0.04em;color:#080808;line-height:1;">PRENONS</div>
+        <div style="font-size:9px;letter-spacing:0.28em;text-transform:uppercase;color:rgba(0,0,0,0.4);margin-top:6px;font-family:'DM Sans',sans-serif;font-weight:300;">Technology Studio</div>
+      </div>
+    </div>
+    <!-- Acid full -->
+    <div class="logo-card" style="background:#C9FF00;">
+      <div class="logo-card-label" style="color:rgba(0,0,0,0.3);">Acid Full</div>
+      <svg width="52" height="44" viewBox="0 0 52 44" fill="none">
+        <line x1="6" y1="4" x2="6" y2="40" stroke="#080808" stroke-width="3.5" stroke-linecap="square"/>
+        <path d="M6 4 L28 4 C36 4 40 8 40 16 C40 24 36 28 28 28 L6 28" stroke="#080808" stroke-width="3.5" fill="none" stroke-linecap="square" stroke-linejoin="miter"/>
+        <line x1="6" y1="4" x2="40" y2="4" stroke="rgba(0,0,0,0.5)" stroke-width="3.5" stroke-linecap="square"/>
+        <rect x="44" y="36" width="7" height="7" fill="#080808"/>
+      </svg>
+      <div>
+        <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:32px;letter-spacing:-0.04em;color:#080808;line-height:1;">PRENONS</div>
+        <div style="font-size:9px;letter-spacing:0.28em;text-transform:uppercase;color:rgba(0,0,0,0.45);margin-top:6px;font-family:'DM Sans',sans-serif;font-weight:300;">Technology Studio</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Additional icon sizes -->
+  <div style="display:flex;gap:12px;align-items:center;margin-top:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:6px;padding:20px 24px;">
+    <div style="font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.2);min-width:80px;">All Sizes</div>
+    <svg width="48" height="40" viewBox="0 0 52 44" fill="none"><line x1="6" y1="4" x2="6" y2="40" stroke="white" stroke-width="3" stroke-linecap="square"/><path d="M6 4 L28 4 C36 4 40 8 40 16 C40 24 36 28 28 28 L6 28" stroke="white" stroke-width="3" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><line x1="6" y1="4" x2="40" y2="4" stroke="#C9FF00" stroke-width="3" stroke-linecap="square"/><rect x="44" y="36" width="7" height="7" fill="#C9FF00"/></svg>
+    <svg width="32" height="28" viewBox="0 0 52 44" fill="none"><line x1="6" y1="4" x2="6" y2="40" stroke="white" stroke-width="3" stroke-linecap="square"/><path d="M6 4 L28 4 C36 4 40 8 40 16 C40 24 36 28 28 28 L6 28" stroke="white" stroke-width="3" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><line x1="6" y1="4" x2="40" y2="4" stroke="#C9FF00" stroke-width="3" stroke-linecap="square"/><rect x="44" y="36" width="7" height="7" fill="#C9FF00"/></svg>
+    <svg width="20" height="18" viewBox="0 0 52 44" fill="none"><line x1="6" y1="4" x2="6" y2="40" stroke="white" stroke-width="4" stroke-linecap="square"/><path d="M6 4 L28 4 C36 4 40 8 40 16 C40 24 36 28 28 28 L6 28" stroke="white" stroke-width="4" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><rect x="44" y="36" width="8" height="8" fill="#C9FF00"/></svg>
+    <svg width="14" height="12" viewBox="0 0 52 44" fill="none"><line x1="6" y1="4" x2="6" y2="40" stroke="white" stroke-width="5" stroke-linecap="square"/><path d="M6 4 L28 4 C36 4 40 8 40 16 C40 24 36 28 28 28 L6 28" stroke="white" stroke-width="5" fill="none" stroke-linecap="square" stroke-linejoin="miter"/><rect x="44" y="36" width="8" height="8" fill="#C9FF00"/></svg>
+    <div style="font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.2);margin-left:auto;">Works at 14px → Billboard</div>
+  </div>
+
+  <div class="h-rule"></div>
+  <div class="mockup-label">Mockups</div>
+  <div class="mockup-row">
+    <!-- Biz Card -->
+    <div>
+      <div class="mockup-label">Business Card</div>
+      <div class="bizcard" style="background:#080808;border:1px solid rgba(201,255,0,0.2);">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#C9FF00;"></div>
+        <div>
+          <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:18px;letter-spacing:-0.04em;color:#fff;">PRENONS</div>
+          <div style="font-size:8px;letter-spacing:0.26em;text-transform:uppercase;color:#C9FF00;font-family:'DM Sans',sans-serif;font-weight:300;margin-top:2px;">Technology Studio</div>
+        </div>
+        <div>
+          <div style="font-size:12px;color:#fff;font-family:'DM Sans',sans-serif;font-weight:400;margin-bottom:3px;">Prajwol Shrestha</div>
+          <div style="font-size:8px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);font-family:'DM Sans',sans-serif;font-weight:300;">Founder & CEO</div>
+          <div style="font-size:8px;color:rgba(255,255,255,0.3);margin-top:7px;line-height:1.6;font-family:'DM Sans',sans-serif;font-weight:300;">hello@prenons.io<br>prenons.io</div>
+        </div>
+      </div>
+      <!-- Back of card -->
+      <div class="bizcard" style="background:#C9FF00;margin-top:8px;overflow:hidden;">
+        <div style="position:absolute;bottom:-16px;right:-8px;">
+          <svg width="80" height="68" viewBox="0 0 52 44" fill="none" opacity="0.12">
+            <line x1="6" y1="4" x2="6" y2="40" stroke="#080808" stroke-width="3" stroke-linecap="square"/>
+            <path d="M6 4 L28 4 C36 4 40 8 40 16 C40 24 36 28 28 28 L6 28" stroke="#080808" stroke-width="3" fill="none" stroke-linecap="square" stroke-linejoin="miter"/>
+            <rect x="44" y="36" width="7" height="7" fill="#080808"/>
+          </svg>
+        </div>
+        <div style="font-size:8px;letter-spacing:0.24em;text-transform:uppercase;color:rgba(0,0,0,0.45);font-family:'DM Sans',sans-serif;font-weight:300;">Build. Ship. Own.</div>
+        <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:22px;letter-spacing:-0.04em;color:#080808;">PRENONS</div>
+      </div>
+    </div>
+
+    <!-- Social Posts -->
+    <div>
+      <div class="mockup-label">Social Posts</div>
+      <div class="social-post" style="background:#080808;border:1px solid rgba(255,255,255,0.06);">
+        <div style="position:absolute;top:0;left:0;bottom:0;width:3px;background:#C9FF00;"></div>
+        <div style="padding-left:16px;">
+          <div style="font-size:9px;letter-spacing:0.24em;text-transform:uppercase;color:#C9FF00;font-family:'DM Sans',sans-serif;font-weight:300;margin-bottom:14px;">Hiring · Full-Time</div>
+          <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(28px,4vw,44px);color:#fff;letter-spacing:-0.04em;line-height:1.02;">SENIOR<br>FULL STACK<br>ENGINEER</div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;padding-left:16px;">
+          <div style="font-size:9px;color:rgba(255,255,255,0.2);font-family:'DM Sans',sans-serif;font-weight:300;letter-spacing:0.08em;">@prenons.io</div>
+          <div style="background:#C9FF00;padding:6px 14px;border-radius:2px;font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#080808;font-family:'DM Sans',sans-serif;">Apply →</div>
+        </div>
+      </div>
+      <div style="background:#C9FF00;border-radius:6px;padding:22px 24px;margin-top:8px;aspect-ratio:1.91/1;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;position:relative;">
+        <div style="font-size:8px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(0,0,0,0.4);font-family:'DM Sans',sans-serif;font-weight:300;">IT · Software · UI/UX · Consulting</div>
+        <div>
+          <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(20px,3vw,32px);color:#080808;letter-spacing:-0.04em;line-height:1.05;">PRENONS<br><span style="font-size:0.5em;letter-spacing:0.02em;font-family:'DM Sans',sans-serif;font-weight:300;color:rgba(0,0,0,0.45);">TECHNOLOGY STUDIO</span></div>
+        </div>
+      </div>
+      <!-- Story format -->
+      <div style="background:#080808;border:1px solid rgba(201,255,0,0.12);border-radius:6px;padding:22px;margin-top:8px;aspect-ratio:0.56/1;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;position:relative;max-height:280px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:14px;letter-spacing:-0.03em;color:#fff;">PRENONS</div>
+          <div style="font-size:8px;color:rgba(255,255,255,0.25);font-family:'DM Sans',sans-serif;font-weight:300;letter-spacing:0.1em;">@prenons.io</div>
+        </div>
+        <div>
+          <div style="font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:#C9FF00;font-family:'DM Sans',sans-serif;font-weight:300;margin-bottom:10px;">New Project Launch</div>
+          <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(20px,4vw,36px);color:#fff;letter-spacing:-0.04em;line-height:1.05;">WE JUST<br>SHIPPED<br><span style="color:#C9FF00;">V3.0</span></div>
+        </div>
+        <div style="font-size:8px;font-family:'DM Sans',sans-serif;font-weight:300;color:rgba(255,255,255,0.3);letter-spacing:0.06em;">prenons.io →</div>
+      </div>
+    </div>
+
+    <!-- Letterhead + device mockup -->
+    <div>
+      <div class="mockup-label">Letterhead</div>
+      <div class="letterhead" style="background:#fff;">
+        <div class="lh-header">
+          <div>
+            <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:14px;letter-spacing:-0.04em;color:#080808;">PRENONS</div>
+            <div style="font-size:7px;letter-spacing:0.24em;text-transform:uppercase;color:#A8D400;font-family:'DM Sans',sans-serif;font-weight:300;margin-top:2px;">Technology Studio</div>
+          </div>
+          <div style="text-align:right;font-size:7px;color:#999;line-height:1.6;font-family:'DM Sans',sans-serif;font-weight:300;">prenons.io<br>hello@prenons.io<br>Kathmandu, NP</div>
+        </div>
+        <div style="height:2px;background:#080808;"></div>
+        <div style="height:2px;background:#C9FF00;width:20%;margin-bottom:20px;"></div>
+        <div class="lh-body-lines">
+          <div style="height:6px;background:#EBEBEB;border-radius:0;"></div>
+          <div style="height:6px;background:#EBEBEB;border-radius:0;"></div>
+          <div style="height:6px;background:#EBEBEB;border-radius:0;width:70%;"></div>
+          <div style="height:12px;"></div>
+          <div style="height:6px;background:#EBEBEB;border-radius:0;"></div>
+          <div style="height:6px;background:#EBEBEB;border-radius:0;"></div>
+          <div style="height:6px;background:#EBEBEB;border-radius:0;width:55%;"></div>
+          <div style="height:12px;"></div>
+          <div style="height:6px;background:#EBEBEB;border-radius:0;"></div>
+          <div style="height:6px;background:#EBEBEB;border-radius:0;width:80%;"></div>
+        </div>
+        <div style="margin-top:16px;display:flex;gap:3px;">
+          <div style="height:2px;background:#080808;flex:3;"></div>
+          <div style="height:2px;background:#C9FF00;flex:0.4;"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;">
+          <div style="font-size:6px;color:#ccc;font-family:'DM Sans',sans-serif;text-transform:uppercase;letter-spacing:0.12em;">Confidential Document</div>
+          <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:9px;color:#E8E8E8;letter-spacing:-0.03em;">PRENONS</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Full type specimen -->
+  <div class="h-rule"></div>
+  <div class="mockup-label">Typography in Use</div>
+  <div class="type-block" style="padding:40px 48px;">
+    <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(48px,8vw,96px);color:#fff;letter-spacing:-0.04em;line-height:0.9;margin-bottom:8px;">WE BUILD<br><span style="color:#C9FF00;">SYSTEMS</span><br>THAT LAST.</div>
+    <div style="height:2px;background:rgba(255,255,255,0.08);margin:32px 0;"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;">
+      <div style="font-family:'DM Sans',sans-serif;font-size:14px;font-weight:300;color:rgba(255,255,255,0.4);line-height:1.8;">IT infrastructure, custom software development, UI/UX design, and strategic technology consulting. One partner. End to end.</div>
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div style="display:flex;gap:12px;align-items:center;">
+          <div style="width:7px;height:7px;background:#C9FF00;flex-shrink:0;"></div>
+          <div style="font-size:12px;font-family:'DM Sans',sans-serif;font-weight:300;color:rgba(255,255,255,0.35);">IT Services & Infrastructure</div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:center;">
+          <div style="width:7px;height:7px;background:#C9FF00;flex-shrink:0;"></div>
+          <div style="font-size:12px;font-family:'DM Sans',sans-serif;font-weight:300;color:rgba(255,255,255,0.35);">Custom Software Development</div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:center;">
+          <div style="width:7px;height:7px;background:#C9FF00;flex-shrink:0;"></div>
+          <div style="font-size:12px;font-family:'DM Sans',sans-serif;font-weight:300;color:rgba(255,255,255,0.35);">UI/UX Design Systems</div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:center;">
+          <div style="width:7px;height:7px;background:#C9FF00;flex-shrink:0;"></div>
+          <div style="font-size:12px;font-family:'DM Sans',sans-serif;font-weight:300;color:rgba(255,255,255,0.35);">Technology Consulting</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Micro details -->
+  <div class="h-rule"></div>
+  <div class="mockup-label">Micro Design Tokens</div>
+  <div class="micro-grid">
+    <div class="micro-card">
+      <div class="micro-label">Corner Radius</div>
+      <div class="micro-val" style="color:#C9FF00;">2px Buttons<br>0px Cards</div>
+      <div style="display:flex;gap:6px;margin-top:6px;">
+        <div style="width:28px;height:18px;background:rgba(255,255,255,0.1);border-radius:2px;"></div>
+        <div style="width:28px;height:18px;background:rgba(255,255,255,0.1);border-radius:0;"></div>
+      </div>
+    </div>
+    <div class="micro-card">
+      <div class="micro-label">Accent Line</div>
+      <div class="micro-val" style="color:#C9FF00;">3px Top Rule</div>
+      <div style="width:100%;height:3px;background:#C9FF00;margin-top:8px;"></div>
+      <div style="width:20%;height:3px;background:#C9FF00;margin-top:3px;"></div>
+    </div>
+    <div class="micro-card">
+      <div class="micro-label">Grid Unit</div>
+      <div class="micro-val">8px System</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:8px;">
+        <div style="height:8px;background:rgba(201,255,0,0.2);"></div>
+        <div style="height:8px;background:rgba(201,255,0,0.4);"></div>
+        <div style="height:8px;background:rgba(201,255,0,0.2);"></div>
+        <div style="height:8px;background:rgba(201,255,0,0.4);"></div>
+      </div>
+    </div>
+    <div class="micro-card">
+      <div class="micro-label">Mark Detail</div>
+      <div class="micro-val">7×7px Square</div>
+      <div style="width:12px;height:12px;background:#C9FF00;margin-top:8px;"></div>
+      <div style="font-size:10px;color:rgba(255,255,255,0.25);margin-top:4px;">The accent dot</div>
+    </div>
+  </div>
+
+  <!-- Final verdict -->
+  <div style="margin-top:60px;background:rgba(201,255,0,0.05);border:1px solid rgba(201,255,0,0.2);border-radius:8px;padding:36px 40px;">
+    <div style="font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:#C9FF00;margin-bottom:16px;font-family:'DM Sans',sans-serif;font-weight:300;">Why This Is The One</div>
+    <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(24px,4vw,40px);color:#fff;letter-spacing:-0.03em;line-height:1.15;margin-bottom:20px;">Acid Lime + Absolute Black<br>has never been done in IT<br>in South Asia.</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;">
+      <div>
+        <div style="font-size:11px;font-weight:500;color:#fff;margin-bottom:4px;">Zero competitors</div>
+        <div style="font-size:12px;font-family:'DM Sans',sans-serif;font-weight:300;color:rgba(255,255,255,0.35);line-height:1.6;">No IT company in Nepal or the region uses acid lime. Total color ownership from day one.</div>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:500;color:#fff;margin-bottom:4px;">30-year typography</div>
+        <div style="font-size:12px;font-family:'DM Sans',sans-serif;font-weight:300;color:rgba(255,255,255,0.35);line-height:1.6;">Bricolage Grotesque 800 is a variable font that will remain distinctive regardless of design trends.</div>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:500;color:#fff;margin-bottom:4px;">Scale-proof mark</div>
+        <div style="font-size:12px;font-family:'DM Sans',sans-serif;font-weight:300;color:rgba(255,255,255,0.35);line-height:1.6;">The P mark with its 7px square accent works at favicon size and on a 10-foot office wall.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer style="padding:60px 80px;border-top:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;align-items:center;background:#080808;">
+  <div>
+    <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:20px;letter-spacing:-0.04em;color:#fff;">PRENONS</div>
+    <div style="font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.25);font-family:'DM Sans',sans-serif;font-weight:300;margin-top:3px;">Brand Identity System · 2025</div>
+  </div>
+  <div style="font-size:12px;color:rgba(255,255,255,0.2);font-family:'DM Sans',sans-serif;font-weight:300;text-align:right;line-height:1.6;">Five identities studied from<br>Coca-Cola · Nike · IBM · Apple · FedEx</div>
+</footer>
+
+</div><!-- end .main -->
+
+<script>
+// Sidenav active state
+const sideLinks = document.querySelectorAll('.sidenav-link');
+const anchors = ['opt1','opt2','opt3','opt4','opt5'];
+window.addEventListener('scroll', () => {
+  const y = window.scrollY + window.innerHeight * 0.4;
+  anchors.forEach((id, i) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const top = el.offsetTop;
+    const bot = i < anchors.length - 1 ? document.getElementById(anchors[i+1]).offsetTop : Infinity;
+    sideLinks.forEach(l => l.classList.remove('active'));
+    if (y >= top && y < bot) sideLinks[i].classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
